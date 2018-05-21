@@ -54,8 +54,23 @@ catch_df %>%
   arrange(mean_catch)
 ```
 
+#Joins
+```{r}
+region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
+                        stringsAsFactors = FALSE)
+head(region_defs)
+```
 
+```{r}
+region_defs <- region_defs %>%
+  select(code, mgmtArea) %>%
+  rename( Region = code, Region_name = mgmtArea)
+```
 
+```{r}
+catch_joined <- left_join(catch_df, region_defs) 
+head(catch_joined)
+```
 
 
 
