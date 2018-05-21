@@ -1,0 +1,29 @@
+---
+title: "Tidying"
+author: "Rhea Ehresmann"
+date: "May 21, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+
+catch_df <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1", method = "libcurl"),
+                    stringsAsFactors = FALSE)
+head(catch_df)
+```
+
+
+```{r}
+catch_df <- catch_df %>% 
+  select(Region, Year, Chinook, Sockeye, Coho, Pink, Chum) 
+
+```
